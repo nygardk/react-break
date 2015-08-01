@@ -1,0 +1,39 @@
+{
+  "name": "react-break",
+  "version": "0.1.0",
+  "description": "Responsive breakpoints in React.",
+  "main": "./dist/react-break.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npm run lint && npm run babel",
+    "babel": "babel ./src --out-dir ./dist",
+    "lint": "eslint ./src"
+  },
+  "keywords": [
+    "breakpoint",
+    "responsive",
+    "utility",
+    "layout",
+    "component",
+    "React"
+  ],
+  "author": "Klaus Nygård",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nygardk/react-break"
+  },
+  "devDependencies": {
+    "babel": "^5.8.3",
+    "eslint": "^0.24.1"
+  },
+  "dependencies": {
+    "breakjs": "^0.1.8",
+    "react": "^0.13.3"
+  },
+  "peerDependencies": {
+    "react": "0.13.x"
+  }
+}

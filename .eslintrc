@@ -1,0 +1,21 @@
+{
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "strict": 0,
+    "quotes": [2, "single"],
+    "max-len": [1, 80, 4],
+    "no-trailing-spaces": [2, { skipBlankLines: true }],
+    "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+    "no-unused-vars": [1, {"vars": "all", "args": "after-used"}],
+    "semi": [1, "always"],
+    "no-unused-expressions": 1,
+    "no-loop-func": 0
+  }
+}
