@@ -9,7 +9,7 @@ A utility React component based on
 ## Install
 
 ```shell
-npm install breakjs --save
+npm install react-brake --save
 ```
 
 ## Usage example
