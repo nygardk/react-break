@@ -116,7 +116,7 @@ in the example above atLeast('tablet') matches window sizes above 768px.
 __`atMost`__ matches the given and any smaller breakpoint, e.g.
 in the example above atMost('tablet') matches window size below 767px.
 
-### breakComponentGenerator(String <layout method>, String <layout name>)
+### breakComponentGenerator(String [layout method], String [layout name]) -> Component
 
 `breakComponentGenerator` is a utility function that allows you to
 create custom components for breaking the layout, with declarative names.
