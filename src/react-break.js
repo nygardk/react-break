@@ -11,11 +11,11 @@ let Break = React.createClass({
     })
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {layout: breakjs(this.props.breakpoints)};
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.onBreakpointsChange();
   },
 
@@ -25,23 +25,23 @@ let Break = React.createClass({
     }
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this.state.layout.removeChangeListener(this.onLayoutChange);
   },
 
-  onBreakpointsChange: function() {
+  onBreakpointsChange() {
     this.setState({layout: breakjs(this.props.breakpoints)});
     this.state.layout.removeChangeListener(this.onLayoutChange);
     this.state.layout.addChangeListener(this.onLayoutChange);
   },
 
-  onLayoutChange: function() {
+  onLayoutChange() {
     if (this.isMounted()) {
       this.forceUpdate();
     }
   },
 
-  render: function() {
+  render() {
     let method = this.state.layout[this.props.query.method];
     let breakpoint = this.props.query.breakpoint;
 
