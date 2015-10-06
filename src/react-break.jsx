@@ -52,7 +52,11 @@ const Break = React.createClass({
     const method = layout[query.method];
     const breakpoint = query.breakpoint;
 
-    return method(breakpoint) ? children : null;
+    const renderChildren = typeof children === 'string'
+      ? <span>{children}</span>
+      : children
+
+    return method(breakpoint) ? renderChildren : null;
   }
 });
 
