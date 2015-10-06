@@ -2,9 +2,13 @@ import React from 'react';
 import breakjs from 'breakjs';
 
 
-let Break = React.createClass({
+const Break = React.createClass({
   propTypes: {
     breakpoints: React.PropTypes.object.isRequired,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ]),
     query: React.PropTypes.shape({
       method: React.PropTypes.string.isRequired,
       breakpoint: React.PropTypes.string.isRequired
@@ -17,12 +21,6 @@ let Break = React.createClass({
 
   componentWillMount() {
     this.onBreakpointsChange();
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.query.breakpoints !== this.props.query.breakpoints) {
-      this.onBreakpointsChange();
-    }
   },
 
   componentWillUnmount() {
@@ -42,14 +40,19 @@ let Break = React.createClass({
   },
 
   render() {
-    let method = this.state.layout[this.props.query.method];
-    let breakpoint = this.props.query.breakpoint;
+    const {
+      children,
+      query
+    } = this.props;
 
-    if (method(breakpoint)) {
-      return this.props.children;
-    } else {
-      return null;
-    }
+    const {
+      layout
+    } = this.state;
+
+    const method = layout[query.method];
+    const breakpoint = query.breakpoint;
+
+    return method(breakpoint) ? children : null;
   }
 });
 

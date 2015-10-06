@@ -19,6 +19,7 @@ var Break = _react2['default'].createClass({
 
   propTypes: {
     breakpoints: _react2['default'].PropTypes.object.isRequired,
+    children: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.arrayOf(_react2['default'].PropTypes.node), _react2['default'].PropTypes.node]),
     query: _react2['default'].PropTypes.shape({
       method: _react2['default'].PropTypes.string.isRequired,
       breakpoint: _react2['default'].PropTypes.string.isRequired
@@ -31,12 +32,6 @@ var Break = _react2['default'].createClass({
 
   componentWillMount: function componentWillMount() {
     this.onBreakpointsChange();
-  },
-
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (nextProps.query.breakpoints !== this.props.query.breakpoints) {
-      this.onBreakpointsChange();
-    }
   },
 
   componentWillUnmount: function componentWillUnmount() {
@@ -56,14 +51,15 @@ var Break = _react2['default'].createClass({
   },
 
   render: function render() {
-    var method = this.state.layout[this.props.query.method];
-    var breakpoint = this.props.query.breakpoint;
+    var _props = this.props;
+    var children = _props.children;
+    var query = _props.query;
+    var layout = this.state.layout;
 
-    if (method(breakpoint)) {
-      return this.props.children;
-    } else {
-      return null;
-    }
+    var method = layout[query.method];
+    var breakpoint = query.breakpoint;
+
+    return method(breakpoint) ? children : null;
   }
 });
 
