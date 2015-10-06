@@ -59,8 +59,8 @@ var Break = _react2['default'].createClass({
     var method = layout[query.method];
     var breakpoint = query.breakpoint;
 
-    var renderChildren = typeof children === 'string' ? _react2['default'].createElement(
-      'span',
+    var renderChildren = _react2['default'].Children.count(children) > 1 || typeof children === 'string' ? _react2['default'].createElement(
+      'div',
       null,
       children
     ) : children;

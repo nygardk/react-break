@@ -52,8 +52,9 @@ const Break = React.createClass({
     const method = layout[query.method];
     const breakpoint = query.breakpoint;
 
-    const renderChildren = typeof children === 'string'
-      ? <span>{children}</span>
+    const renderChildren =
+      (React.Children.count(children) > 1 || typeof children === 'string')
+      ? <div>{children}</div>
       : children;
 
     return method(breakpoint) ? renderChildren : null;
