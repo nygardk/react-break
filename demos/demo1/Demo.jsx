@@ -29,23 +29,21 @@ const Demo = React.createClass({
           </code>
         </pre>
 
-        <div>
-          <OnMobile>
-            Displayed on mobile layout only
-          </OnMobile>
+        <OnMobile>
+          <div>Displayed on mobile layout only</div>
+        </OnMobile>
 
-          <OnAtLeastTablet>
-            Displayed on tablet and desktop layouts
-          </OnAtLeastTablet>
+        <OnAtLeastTablet>
+          <div>Displayed on tablet and desktop layouts</div>
+        </OnAtLeastTablet>
 
-          <OnAtMostPhablet>
-            Displayed on mobile and phablet layouts
-          </OnAtMostPhablet>
+        <OnAtMostPhablet>
+          <div>Displayed on mobile and phablet layouts</div>
+        </OnAtMostPhablet>
 
-          <OnDesktop>
-            Displayed on desktop layout only
-          </OnDesktop>
-        </div>
+        <OnDesktop>
+          <div>Displayed on desktop layout only</div>
+        </OnDesktop>
       </div>
     );
   }

@@ -15,19 +15,18 @@ npm install react-brake --save
 ## Usage example
 
 ```js
+import React from 'react';
+import Break from 'react-break';
 
-var React = require('React');
-var Break = require('react-break');
-
-var UIBreakpoints = {
+const UIBreakpoints = {
   mobile: 0,
   phablet: 550,
   tablet: 768,
   desktop: 992
 };
 
-var myApp = React.createClass({
-  render: function() {
+const myApp = React.createClass({
+  render() {
     return (
       <div>
         <Break breakpoints={UIBreakpoints}
@@ -48,9 +47,53 @@ var myApp = React.createClass({
     );
   }
 });
-
-
 ```
+See also demos/demo0.
+
+------------------
+
+A new, even more declaritve approach in version 0.2.x:
+```js
+import React from 'react';
+import { breakComponentGenerator } from 'react-break';
+
+const generator = breakComponentGenerator({
+  mobile: 0,
+  phablet: 550,
+  tablet: 768,
+  desktop: 992
+});
+
+const OnMobile = generator('is', 'mobile');
+const OnAtLeastTablet = generator('atLeast', 'tablet');
+const OnAtMostPhablet = generator('atMost', 'phablet');
+const OnDesktop = generator('is', 'desktop');
+
+const myApp = React.createClass({
+  render() {
+    return (
+      <div>
+        <OnMobile>
+           Displayed on mobile layout only
+         </OnMobile>
+
+         <OnAtLeastTablet>
+           Displayed on tablet and desktop layouts
+         </OnAtLeastTablet>
+
+         <OnAtMostPhablet>
+           Displayed on mobile and phablet layouts
+         </OnAtMostPhablet>
+
+         <OnDesktop>
+           Displayed on desktop layout only
+         </OnDesktop>
+      </div>
+    );
+  }
+});
+```
+See also demos/demo1.
 
 ## Options
 
@@ -72,6 +115,13 @@ in the example above atLeast('tablet') matches window sizes above 768px.
 __`atMost`__ matches the given and any smaller breakpoint, e.g.
 in the example above atMost('tablet') matches window size below 767px.
 
+### breakComponentGenerator(String <layout method>, String <layout name>)
+
+`breakComponentGenerator` is a utility function that allows you to
+create custom components for breaking the layout, with declarative names.
+
+It returns a function that takes two parameters, layout method and
+a breakpoint name.
 
 ## License
 

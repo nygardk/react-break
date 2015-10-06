@@ -59,9 +59,35 @@ var Break = _react2['default'].createClass({
     var method = layout[query.method];
     var breakpoint = query.breakpoint;
 
-    return method(breakpoint) ? children : null;
+    var renderChildren = typeof children === 'string' ? _react2['default'].createElement(
+      'span',
+      null,
+      children
+    ) : children;
+
+    return method(breakpoint) ? renderChildren : null;
   }
 });
 
+var breakComponentGenerator = function generator(breakpoints) {
+  return function createComponent(method, breakpoint) {
+    return _react2['default'].createClass({
+      propTypes: {
+        children: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.arrayOf(_react2['default'].PropTypes.node), _react2['default'].PropTypes.node])
+      },
+
+      render: function render() {
+        var children = this.props.children;
+
+        return children ? _react2['default'].createElement(
+          Break,
+          { breakpoints: breakpoints, query: { method: method, breakpoint: breakpoint } },
+          children
+        ) : null;
+      }
+    });
+  };
+};
+
+exports.breakComponentGenerator = breakComponentGenerator;
 exports['default'] = Break;
-module.exports = exports['default'];
