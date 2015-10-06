@@ -54,10 +54,36 @@ const Break = React.createClass({
 
     const renderChildren = typeof children === 'string'
       ? <span>{children}</span>
-      : children
+      : children;
 
     return method(breakpoint) ? renderChildren : null;
   }
 });
 
+const breakComponentGenerator = function generator(breakpoints) {
+  return function createComponent(method, breakpoint) {
+    return React.createClass({
+      propTypes: {
+        children: React.PropTypes.oneOfType([
+          React.PropTypes.arrayOf(React.PropTypes.node),
+          React.PropTypes.node
+        ])
+      },
+
+      render() {
+        const {
+          children
+        } = this.props;
+
+        return children ? (
+          <Break breakpoints={breakpoints} query={{method, breakpoint}}>
+            {children}
+          </Break>
+        ) : null;
+      }
+    });
+  };
+};
+
+export { breakComponentGenerator };
 export default Break;
