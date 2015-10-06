@@ -53,7 +53,7 @@ See also demos/demo0.
 
 ------------------
 
-A new, even more declaritve approach in version 0.2.x:
+A new, even more declarative approach in version 0.2.x:
 ```js
 import React from 'react';
 import { breakComponentGenerator } from 'react-break';
