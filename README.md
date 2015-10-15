@@ -121,8 +121,9 @@ in the example above atMost('tablet') matches window size below 767px.
 `breakComponentGenerator` is a utility function that allows you to
 create custom components for breaking the layout, with declarative names.
 
-It returns a function that takes two parameters, layout method and
-a breakpoint name.
+First you constructing the generator by calling it with the breakpoints
+object (key-value pairs of breakpoint name and the pixel value). It returns a
+function that takes two parameters, layout method and a breakpoint name.
 
 ## License
 
