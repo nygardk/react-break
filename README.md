@@ -14,6 +14,10 @@ for different layouts.
 npm install react-brake --save
 ```
 
+## Compatibility
+
+Compatible with React versions `0.13.x` and `0.14.x`.
+
 ## Usage examples
 
 Create components declaratively using layoutGenerator:
