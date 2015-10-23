@@ -11,17 +11,16 @@
     "build-src": "babel ./src --out-dir ./build",
     "build-demos": "NODE_ENV=production webpack -p --config webpack.demos.config.js",
     "run-demos": "NODE_ENV=development webpack-dev-server --config webpack.demos.config.js --content-base demos/ --progress --colors",
-    "lint": "eslint --ext .jsx ./src ./demos",
-    "test": "karma start --single-run"
+    "lint": "eslint --ext .jsx ./src ./demos"
   },
   "keywords": [
     "react",
+    "react-component",
     "component",
     "breakpoint",
     "responsive",
     "utility",
-    "layout",
-    "component"
+    "layout"
   ],
   "author": {
     "name": "Klaus Nygård",
