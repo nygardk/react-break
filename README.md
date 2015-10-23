@@ -16,29 +16,29 @@ npm install react-brake --save
 
 ## Usage examples
 
-Create components declaratively using breakComponentGenerator:
+Create components declaratively using layoutGenerator:
 
 ```js
 import React from 'react';
-import { breakComponentGenerator } from 'react-break';
+import { layoutGenerator } from 'react-break';
 
-const generator = breakComponentGenerator({
+const layout = layoutGenerator({
   mobile: 0,
   phablet: 550,
   tablet: 768,
   desktop: 992
 });
 
-const OnMobile = generator('is', 'mobile');
-const OnAtLeastTablet = generator('atLeast', 'tablet');
-const OnAtMostPhablet = generator('atMost', 'phablet');
-const OnDesktop = generator('is', 'desktop');
+const OnMobile = layout('is', 'mobile');
+const OnAtLeastTablet = layout('atLeast', 'tablet');
+const OnAtMostPhablet = layout('atMost', 'phablet');
+const OnDesktop = layout('is', 'desktop');
 
 const myApp = React.createClass({
   render() {
     return (
       <div>
-        <OnMobile>
+         <OnMobile>
            Displayed on mobile layout only
          </OnMobile>
 
@@ -120,9 +120,9 @@ in the example above atLeast('tablet') matches window sizes above 768px.
 __`atMost`__ matches the given and any smaller breakpoint, e.g.
 in the example above atMost('tablet') matches window size below 767px.
 
-### breakComponentGenerator(String [layout method], String [layout name]) -> Component
+### layoutGenerator(String [layout method], String [layout name]) -> Component
 
-`breakComponentGenerator` is a utility function that allows you to
+`layoutGenerator` is a utility function that allows you to
 create custom components for breaking the layout, with declarative names.
 
 First you constructing the generator by calling it with the breakpoints

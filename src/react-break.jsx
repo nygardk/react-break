@@ -61,7 +61,7 @@ const Break = React.createClass({
   }
 });
 
-const breakComponentGenerator = function generator(breakpoints) {
+const layoutGenerator = function componentGenerator(breakpoints) {
   return function createComponent(method, breakpoint) {
     return React.createClass({
       propTypes: {
@@ -86,5 +86,16 @@ const breakComponentGenerator = function generator(breakpoints) {
   };
 };
 
-export { breakComponentGenerator };
+/* eslint-disable no-console */
+const breakComponentGenerator = function generator(breakpoints) {
+  console.warn('Warning: "breakComponentGenerator" was renamed to ' +
+    '"layoutGenerator" in versions >=0.3.0 and will be deprecated on some ' +
+    'future version.');
+
+  return layoutGenerator(breakpoints);
+};
+/* eslint-enable no-console */
+
+export { layoutGenerator, breakComponentGenerator };
 export default Break;
+
