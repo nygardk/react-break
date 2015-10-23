@@ -1,17 +1,17 @@
 import React from 'react';
-import { breakComponentGenerator } from 'react-break';
+import { layoutGenerator } from 'react-break';
 
-const generator = breakComponentGenerator({
+const layout = layoutGenerator({
   mobile: 0,
   phablet: 550,
   tablet: 768,
   desktop: 992
 });
 
-const OnMobile = generator('is', 'mobile');
-const OnAtLeastTablet = generator('atLeast', 'tablet');
-const OnAtMostPhablet = generator('atMost', 'phablet');
-const OnDesktop = generator('is', 'desktop');
+const OnMobile = layout('is', 'mobile');
+const OnAtLeastTablet = layout('atLeast', 'tablet');
+const OnAtMostPhablet = layout('atMost', 'phablet');
+const OnDesktop = layout('is', 'desktop');
 
 const Demo = React.createClass({
   render() {

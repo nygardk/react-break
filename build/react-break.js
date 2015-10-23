@@ -30,7 +30,7 @@ var Break = _react2['default'].createClass({
     return { layout: (0, _breakjs2['default'])(this.props.breakpoints) };
   },
 
-  componentWillMount: function componentWillMount() {
+  componentDidMount: function componentDidMount() {
     this.onBreakpointsChange();
   },
 
@@ -69,7 +69,7 @@ var Break = _react2['default'].createClass({
   }
 });
 
-var breakComponentGenerator = function generator(breakpoints) {
+var layoutGenerator = function componentGenerator(breakpoints) {
   return function createComponent(method, breakpoint) {
     return _react2['default'].createClass({
       propTypes: {
@@ -89,5 +89,14 @@ var breakComponentGenerator = function generator(breakpoints) {
   };
 };
 
+/* eslint-disable no-console */
+var breakComponentGenerator = function generator(breakpoints) {
+  console.warn('Warning: "breakComponentGenerator" was renamed to ' + '"layoutGenerator" in versions >=0.3.0 and will be deprecated on some ' + 'future version.');
+
+  return layoutGenerator(breakpoints);
+};
+/* eslint-enable no-console */
+
+exports.layoutGenerator = layoutGenerator;
 exports.breakComponentGenerator = breakComponentGenerator;
 exports['default'] = Break;
