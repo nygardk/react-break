@@ -4,7 +4,8 @@
 
 A utility React component based on
 [BreakJS](https://github.com/nygardk/BreakJS/). Create declarative
-breakpoint components for your React apps.
+breakpoint components for your React apps. Render different components
+for different layouts.
 
 
 ## Install
@@ -13,47 +14,10 @@ breakpoint components for your React apps.
 npm install react-brake --save
 ```
 
-## Usage example
+## Usage examples
 
-```js
-import React from 'react';
-import Break from 'react-break';
+Create components declaratively using breakComponentGenerator:
 
-const UIBreakpoints = {
-  mobile: 0,
-  phablet: 550,
-  tablet: 768,
-  desktop: 992
-};
-
-const myApp = React.createClass({
-  render() {
-    return (
-      <div>
-        <Break breakpoints={UIBreakpoints}
-          query={{method: 'is', breakpoint: 'mobile'}}>
-          <div>Displayed on mobile layout only</div>
-        </Break>
-
-        <Break breakpoints={UIBreakpoints}
-          query={{method: 'atLeast', breakpoint: 'tablet'}}>
-          <div>Displayed on tablet and desktop layouts</div>
-        </Break>
-
-        <Break breakpoints={UIBreakpoints}
-          query={{method: 'atMost', breakpoint: 'phablet'}}>
-          <div>Displayed on mobile and phablet layouts</div>
-        </Break>
-      </div>
-    );
-  }
-});
-```
-See also demos/demo0.
-
-------------------
-
-A new, even more declarative approach in version 0.2.x:
 ```js
 import React from 'react';
 import { breakComponentGenerator } from 'react-break';
@@ -95,6 +59,46 @@ const myApp = React.createClass({
 });
 ```
 See also demos/demo1.
+
+----------------------------------------------
+
+Create layout components manually by using `<Break />` component:
+
+```js
+import React from 'react';
+import Break from 'react-break';
+
+const UIBreakpoints = {
+  mobile: 0,
+  phablet: 550,
+  tablet: 768,
+  desktop: 992
+};
+
+const myApp = React.createClass({
+  render() {
+    return (
+      <div>
+        <Break breakpoints={UIBreakpoints}
+          query={{method: 'is', breakpoint: 'mobile'}}>
+          <div>Displayed on mobile layout only</div>
+        </Break>
+
+        <Break breakpoints={UIBreakpoints}
+          query={{method: 'atLeast', breakpoint: 'tablet'}}>
+          <div>Displayed on tablet and desktop layouts</div>
+        </Break>
+
+        <Break breakpoints={UIBreakpoints}
+          query={{method: 'atMost', breakpoint: 'phablet'}}>
+          <div>Displayed on mobile and phablet layouts</div>
+        </Break>
+      </div>
+    );
+  }
+});
+```
+See also demos/demo0.
 
 ## Options
 
