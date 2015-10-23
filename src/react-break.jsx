@@ -19,7 +19,7 @@ const Break = React.createClass({
     return {layout: breakjs(this.props.breakpoints)};
   },
 
-  componentWillMount() {
+  componentDidMount() {
     this.onBreakpointsChange();
   },
 
