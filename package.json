@@ -47,7 +47,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "breakjs": "^0.1.9",
+    "breakjs": "^0.1.10",
     "react": "0.14.x || 0.13.x"
   }
 }
