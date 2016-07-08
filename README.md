@@ -11,7 +11,7 @@ for different layouts.
 ## Install
 
 ```shell
-npm install react-brake --save
+npm install react-break --save
 ```
 
 ## Compatibility
