@@ -1,5 +1,8 @@
 # react-break
 
+[![NPM Version](https://img.shields.io/npm/v/react-break.svg?style=flat)](https://www.npmjs.com/package/react-break)
+[![NPM Downloads](https://img.shields.io/npm/dm/react-break.svg?style=flat)](https://www.npmjs.com/package/react-break)
+
 > Responsive breakpoints in React.
 
 A utility React component based on
