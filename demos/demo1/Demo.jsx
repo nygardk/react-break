@@ -8,10 +8,10 @@ const layout = layoutGenerator({
   desktop: 992
 });
 
-const OnMobile = layout('is', 'mobile');
-const OnAtLeastTablet = layout('atLeast', 'tablet');
-const OnAtMostPhablet = layout('atMost', 'phablet');
-const OnDesktop = layout('is', 'desktop');
+const OnMobile = layout.is('mobile');
+const OnAtLeastTablet = layout.isAtLeast('tablet');
+const OnAtMostPhablet = layout.isAtMost('phablet');
+const OnDesktop = layout.is('desktop');
 
 const Demo = React.createClass({
   render() {

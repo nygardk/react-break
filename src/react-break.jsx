@@ -62,7 +62,12 @@ const Break = React.createClass({
 });
 
 const layoutGenerator = function componentGenerator(breakpoints) {
-  return function createComponent(method, breakpoint) {
+  function createComponent(method, breakpoint) {
+    if (!Object.keys(breakpoints).includes(breakpoint)) {
+      throw new Error(`Invalid breakpoint name '${breakpoint}'` +
+        '(not defined in layout).');
+    }
+
     return React.createClass({
       propTypes: {
         children: React.PropTypes.oneOfType([
@@ -83,6 +88,12 @@ const layoutGenerator = function componentGenerator(breakpoints) {
         ) : null;
       }
     });
+  }
+
+  return {
+    is: breakpoint => createComponent('is', breakpoint),
+    isAtLeast: breakpoint => createComponent('atLeast', breakpoint),
+    isAtMost: breakpoint => createComponent('atMost', breakpoint)
   };
 };
 
