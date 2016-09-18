@@ -34,13 +34,13 @@ const Demo = React.createClass({
 
           <Break
             breakpoints={UIBreakpoints}
-            query={{ method: 'atLeast', breakpoint: 'tablet' }}>
+            query={{ method: 'isAtLeast', breakpoint: 'tablet' }}>
             <div>Displayed on tablet and desktop layouts</div>
           </Break>
 
           <Break
             breakpoints={UIBreakpoints}
-            query={{ method: 'atMost', breakpoint: 'phablet' }}>
+            query={{ method: 'isAtMost', breakpoint: 'phablet' }}>
             <div>Displayed on mobile and phablet layouts</div>
           </Break>
 

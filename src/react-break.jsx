@@ -1,6 +1,15 @@
 import React from 'react';
 import breakjs from 'breakjs';
 
+const breakJsMethodMap = {
+  is: 'is',
+  isAtLeast: 'atLeast',
+  isAtMost: 'atMost',
+};
+
+function getMethodFromLayout(layout, methodName) {
+  return layout[breakJsMethodMap[methodName]];
+}
 
 const Break = React.createClass({
   propTypes: {
@@ -10,7 +19,7 @@ const Break = React.createClass({
       React.PropTypes.node,
     ]),
     query: React.PropTypes.shape({
-      method: React.PropTypes.string.isRequired,
+      method: React.PropTypes.oneOf(Object.keys(breakJsMethodMap)),
       breakpoint: React.PropTypes.string.isRequired,
     }),
   },
@@ -49,7 +58,7 @@ const Break = React.createClass({
       layout,
     } = this.state;
 
-    const method = layout[query.method];
+    const method = getMethodFromLayout(layout, query.method);
     const breakpoint = query.breakpoint;
 
     const renderChildren =
@@ -92,11 +101,10 @@ const layoutGenerator = function componentGenerator(breakpoints) {
 
   return {
     is: breakpoint => createComponent('is', breakpoint),
-    isAtLeast: breakpoint => createComponent('atLeast', breakpoint),
-    isAtMost: breakpoint => createComponent('atMost', breakpoint),
+    isAtLeast: breakpoint => createComponent('isAtLeast', breakpoint),
+    isAtMost: breakpoint => createComponent('isAtMost', breakpoint),
   };
 };
 
 export { layoutGenerator };
 export default Break;
-
