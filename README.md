@@ -5,11 +5,7 @@
 
 > Responsive breakpoints in React.
 
-A utility React component based on
-[BreakJS](https://github.com/nygardk/BreakJS/). Create declarative
-breakpoint components for your React apps. Render different components
-for different layouts.
-
+A utility React component based on [BreakJS](https://github.com/nygardk/BreakJS/). Create declarative breakpoint components for your React apps. Render different components for different layouts.
 
 ## Install
 
