@@ -5,7 +5,7 @@ const layout = layoutGenerator({
   mobile: 0,
   phablet: 550,
   tablet: 768,
-  desktop: 992
+  desktop: 992,
 });
 
 const OnMobile = layout.is('mobile');
@@ -46,7 +46,7 @@ const Demo = React.createClass({
         </OnDesktop>
       </div>
     );
-  }
+  },
 });
 
 export default Demo;

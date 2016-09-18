@@ -7,16 +7,16 @@ const Break = React.createClass({
     breakpoints: React.PropTypes.object.isRequired,
     children: React.PropTypes.oneOfType([
       React.PropTypes.arrayOf(React.PropTypes.node),
-      React.PropTypes.node
+      React.PropTypes.node,
     ]),
     query: React.PropTypes.shape({
       method: React.PropTypes.string.isRequired,
-      breakpoint: React.PropTypes.string.isRequired
-    })
+      breakpoint: React.PropTypes.string.isRequired,
+    }),
   },
 
   getInitialState() {
-    return {layout: breakjs(this.props.breakpoints)};
+    return { layout: breakjs(this.props.breakpoints) };
   },
 
   componentDidMount() {
@@ -28,7 +28,7 @@ const Break = React.createClass({
   },
 
   onBreakpointsChange() {
-    this.setState({layout: breakjs(this.props.breakpoints)});
+    this.setState({ layout: breakjs(this.props.breakpoints) });
     this.state.layout.removeChangeListener(this.onLayoutChange);
     this.state.layout.addChangeListener(this.onLayoutChange);
   },
@@ -42,11 +42,11 @@ const Break = React.createClass({
   render() {
     const {
       children,
-      query
+      query,
     } = this.props;
 
     const {
-      layout
+      layout,
     } = this.state;
 
     const method = layout[query.method];
@@ -58,7 +58,7 @@ const Break = React.createClass({
       : children;
 
     return method(breakpoint) ? renderChildren : null;
-  }
+  },
 });
 
 const layoutGenerator = function componentGenerator(breakpoints) {
@@ -72,28 +72,28 @@ const layoutGenerator = function componentGenerator(breakpoints) {
       propTypes: {
         children: React.PropTypes.oneOfType([
           React.PropTypes.arrayOf(React.PropTypes.node),
-          React.PropTypes.node
-        ])
+          React.PropTypes.node,
+        ]),
       },
 
       render() {
         const {
-          children
+          children,
         } = this.props;
 
         return children ? (
-          <Break breakpoints={breakpoints} query={{method, breakpoint}}>
+          <Break breakpoints={breakpoints} query={{ method, breakpoint }}>
             {children}
           </Break>
         ) : null;
-      }
+      },
     });
   }
 
   return {
     is: breakpoint => createComponent('is', breakpoint),
     isAtLeast: breakpoint => createComponent('atLeast', breakpoint),
-    isAtMost: breakpoint => createComponent('atMost', breakpoint)
+    isAtMost: breakpoint => createComponent('atMost', breakpoint),
   };
 };
 
