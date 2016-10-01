@@ -106,9 +106,16 @@ const myApp = React.createClass({
 ```
 See also demos/demo0.
 
-## Options
+## Props
 
-`Break` component takes two attributes, `breakpoints` and `query`.
+__`forceWrap`__: Set to `true` if you want the layout components to create
+a wrapping div also for single child elements. By default the component creates
+a wrapper only for multiple child elements. Note that setting `style`
+or `className` props has no effects without a wrapping div.
+
+### Break component props
+
+`Break` component takes two props, `breakpoints` and `query`.
 Breakpoints are key-value pairs of arbitrary names and values for
 layout breakpoints of your choice. Query has two properties:
 `method` and `breakpoint`. The breakpoint-property must be one of the
