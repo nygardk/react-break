@@ -18,10 +18,13 @@ const Break = React.createClass({
       React.PropTypes.arrayOf(React.PropTypes.node),
       React.PropTypes.node,
     ]),
+    className: React.PropTypes.string,
+    forceWrap: React.PropTypes.bool,
     query: React.PropTypes.shape({
       method: React.PropTypes.oneOf(Object.keys(breakJsMethodMap)),
       breakpoint: React.PropTypes.string.isRequired,
     }),
+    style: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -52,21 +55,28 @@ const Break = React.createClass({
     const {
       children,
       query,
+      style,
+      forceWrap,
     } = this.props;
 
     const {
       layout,
     } = this.state;
 
-    const method = getMethodFromLayout(layout, query.method);
     const breakpoint = query.breakpoint;
 
-    const renderChildren =
-      (React.Children.count(children) > 1 || typeof children === 'string')
-      ? <div>{children}</div>
-      : children;
+    if (!getMethodFromLayout(layout, query.method)(breakpoint)) {
+      return null;
+    }
 
-    return method(breakpoint) ? renderChildren : null;
+    const classes = `react-break react-break--${query.method}-${query.breakpoint}`;
+    const shouldBeWrapped = forceWrap ||
+      React.Children.count(children) > 1 ||
+      typeof children !== 'object';
+
+    return shouldBeWrapped
+      ? <div className={classes} style={style}>{children}</div>
+      : children;
   },
 });
 
@@ -91,7 +101,10 @@ const layoutGenerator = function componentGenerator(breakpoints) {
         } = this.props;
 
         return children ? (
-          <Break breakpoints={breakpoints} query={{ method, breakpoint }}>
+          <Break
+            {...this.props}
+            breakpoints={breakpoints}
+            query={{ method, breakpoint }}>
             {children}
           </Break>
         ) : null;
