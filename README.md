@@ -21,7 +21,7 @@ Compatible with React versions `0.13.x`, `0.14.x` and `15.x.x`.
 
 Create components declaratively using layoutGenerator:
 
-```js
+```jsx
 import React from 'react';
 import { layoutGenerator } from 'react-break';
 
@@ -67,7 +67,7 @@ See also demos/demo1.
 
 Create layout components manually by using `<Break />` component:
 
-```js
+```jsx
 import React from 'react';
 import Break from 'react-break';
 
