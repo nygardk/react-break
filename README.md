@@ -37,29 +37,25 @@ const OnAtLeastTablet = layout.isAtLeast('tablet');
 const OnAtMostPhablet = layout.isAtMost('phablet');
 const OnDesktop = layout.is('desktop');
 
-const myApp = React.createClass({
-  render() {
-    return (
-      <div>
-         <OnMobile>
-           Displayed on mobile layout only
-         </OnMobile>
+const myApp = () => (
+  <div>
+    <OnMobile>
+      Displayed on mobile layout only
+    </OnMobile>
 
-         <OnAtLeastTablet>
-           Displayed on tablet and desktop layouts
-         </OnAtLeastTablet>
+    <OnAtLeastTablet>
+      Displayed on tablet and desktop layouts
+    </OnAtLeastTablet>
 
-         <OnAtMostPhablet>
-           Displayed on mobile and phablet layouts
-         </OnAtMostPhablet>
+    <OnAtMostPhablet>
+      Displayed on mobile and phablet layouts
+    </OnAtMostPhablet>
 
-         <OnDesktop>
-           Displayed on desktop layout only
-         </OnDesktop>
-      </div>
-    );
-  }
-});
+    <OnDesktop>
+      Displayed on desktop layout only
+    </OnDesktop>
+  </div>
+);
 ```
 See also demos/demo1.
 
@@ -78,31 +74,27 @@ const UIBreakpoints = {
   desktop: 992,
 };
 
-const myApp = React.createClass({
-  render() {
-    return (
-      <div>
-        <Break
-          breakpoints={UIBreakpoints}
-          query={{ method: 'is', breakpoint: 'mobile' }}>
-          <div>Displayed on mobile layout only</div>
-        </Break>
+const myApp = () => (
+  <div>
+    <Break
+      breakpoints={UIBreakpoints}
+      query={{ method: 'is', breakpoint: 'mobile' }}>
+      <div>Displayed on mobile layout only</div>
+    </Break>
 
-        <Break
-          breakpoints={UIBreakpoints}
-          query={{ method: 'isAtLeast', breakpoint: 'tablet' }}>
-          <div>Displayed on tablet and desktop layouts</div>
-        </Break>
+    <Break
+      breakpoints={UIBreakpoints}
+      query={{ method: 'isAtLeast', breakpoint: 'tablet' }}>
+      <div>Displayed on tablet and desktop layouts</div>
+    </Break>
 
-        <Break
-          breakpoints={UIBreakpoints}
-          query={{ method: 'isAtMost', breakpoint: 'phablet' }}>
-          <div>Displayed on mobile and phablet layouts</div>
-        </Break>
-      </div>
-    );
-  }
-});
+    <Break
+      breakpoints={UIBreakpoints}
+      query={{ method: 'isAtMost', breakpoint: 'phablet' }}>
+      <div>Displayed on mobile and phablet layouts</div>
+    </Break>
+  </div>
+);
 ```
 See also demos/demo0.
 
