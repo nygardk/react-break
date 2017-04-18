@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import breakjs from 'breakjs';
 
 const breakJsMethodMap = {
@@ -11,45 +12,41 @@ function getMethodFromLayout(layout, methodName) {
   return layout[breakJsMethodMap[methodName]];
 }
 
-const Break = React.createClass({
-  propTypes: {
-    breakpoints: React.PropTypes.object.isRequired,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.arrayOf(React.PropTypes.node),
-      React.PropTypes.node,
+class Break extends Component {
+  static propTypes = {
+    breakpoints: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
     ]),
-    className: React.PropTypes.string,
-    forceWrap: React.PropTypes.bool,
-    query: React.PropTypes.shape({
-      method: React.PropTypes.oneOf(Object.keys(breakJsMethodMap)),
-      breakpoint: React.PropTypes.string.isRequired,
+    className: PropTypes.string,
+    forceWrap: PropTypes.bool,
+    query: PropTypes.shape({
+      method: PropTypes.oneOf(Object.keys(breakJsMethodMap)),
+      breakpoint: PropTypes.string.isRequired,
     }),
-    style: React.PropTypes.object,
-  },
+    style: PropTypes.object,
+  }
 
-  getInitialState() {
-    return { layout: breakjs(this.props.breakpoints) };
-  },
+  state = { layout: breakjs(this.props.breakpoints) }
 
   componentDidMount() {
     this.onBreakpointsChange();
-  },
+  }
 
   componentWillUnmount() {
     this.state.layout.removeChangeListener(this.onLayoutChange);
-  },
+  }
 
   onBreakpointsChange() {
     this.setState({ layout: breakjs(this.props.breakpoints) });
     this.state.layout.removeChangeListener(this.onLayoutChange);
     this.state.layout.addChangeListener(this.onLayoutChange);
-  },
+  }
 
-  onLayoutChange() {
-    if (this.isMounted()) {
-      this.forceUpdate();
-    }
-  },
+  onLayoutChange = () => {
+    this.forceUpdate();
+  }
 
   render() {
     const {
@@ -77,8 +74,8 @@ const Break = React.createClass({
     return shouldBeWrapped
       ? <div className={classes} style={style}>{children}</div>
       : children;
-  },
-});
+  }
+}
 
 const layoutGenerator = function componentGenerator(breakpoints) {
   function createComponent(method, breakpoint) {
@@ -89,9 +86,9 @@ const layoutGenerator = function componentGenerator(breakpoints) {
 
     return React.createClass({
       propTypes: {
-        children: React.PropTypes.oneOfType([
-          React.PropTypes.arrayOf(React.PropTypes.node),
-          React.PropTypes.node,
+        children: PropTypes.oneOfType([
+          PropTypes.arrayOf(PropTypes.node),
+          PropTypes.node,
         ]),
       },
 

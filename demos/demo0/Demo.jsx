@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Break from 'react-break';
 
 
@@ -9,7 +9,7 @@ const UIBreakpoints = {
   desktop: 992,
 };
 
-const Demo = React.createClass({
+class Demo extends Component {
   render() {
     return (
       <div>
@@ -52,7 +52,7 @@ const Demo = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Demo;

@@ -59,7 +59,8 @@
   },
   "dependencies": {
     "babel-runtime": "6.6.1",
-    "breakjs": "1.0.0"
+    "breakjs": "1.0.0",
+    "prop-types": "15.5.8"
   },
   "peerDependencies": {
     "react": "0.13.x || 0.14.x || 15.x.x"

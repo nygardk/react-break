@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { layoutGenerator } from 'react-break';
 
 const layout = layoutGenerator({
@@ -13,7 +13,7 @@ const OnAtLeastTablet = layout.isAtLeast('tablet');
 const OnAtMostPhablet = layout.isAtMost('phablet');
 const OnDesktop = layout.is('desktop');
 
-const Demo = React.createClass({
+class Demo extends Component {
   render() {
     return (
       <div>
@@ -46,7 +46,7 @@ const Demo = React.createClass({
         </OnDesktop>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Demo;
