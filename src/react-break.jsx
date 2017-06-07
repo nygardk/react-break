@@ -54,6 +54,7 @@ class Break extends Component {
       query,
       style,
       forceWrap,
+      ...rest
     } = this.props;
 
     const {
@@ -72,7 +73,7 @@ class Break extends Component {
       typeof children !== 'object';
 
     return shouldBeWrapped
-      ? <div className={classes} style={style}>{children}</div>
+      ? <div className={classes} style={style} { ...rest }>{children}</div>
       : children;
   }
 }
