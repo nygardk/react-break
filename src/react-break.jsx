@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import breakjs from 'breakjs';
 
@@ -12,7 +12,7 @@ function getMethodFromLayout(layout, methodName) {
   return layout[breakJsMethodMap[methodName]];
 }
 
-class Break extends Component {
+class Break extends PureComponent {
   static propTypes = {
     breakpoints: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([
@@ -84,13 +84,13 @@ const layoutGenerator = function componentGenerator(breakpoints) {
         '(not defined in layout).');
     }
 
-    return React.createClass({
-      propTypes: {
+    return class Layout extends PureComponent {
+      static propTypes = {
         children: PropTypes.oneOfType([
           PropTypes.arrayOf(PropTypes.node),
           PropTypes.node,
         ]),
-      },
+      }
 
       render() {
         const {
@@ -105,8 +105,8 @@ const layoutGenerator = function componentGenerator(breakpoints) {
             {children}
           </Break>
         ) : null;
-      },
-    });
+      }
+    };
   }
 
   return {
