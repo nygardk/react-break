@@ -1,6 +1,6 @@
 {
   "name": "react-break",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Responsive breakpoints in React.",
   "main": "./lib/react-break.js",
   "directories": {
