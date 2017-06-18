@@ -73,7 +73,7 @@ class Break extends PureComponent {
       typeof children !== 'object';
 
     return shouldBeWrapped
-      ? <div className={classes} style={style} { ...rest }>{children}</div>
+      ? <div className={classes} style={style} {...rest}>{children}</div>
       : children;
   }
 }
