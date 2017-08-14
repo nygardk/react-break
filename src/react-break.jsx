@@ -62,6 +62,7 @@ class Break extends PureComponent {
     } = this.state;
 
     const breakpoint = query.breakpoint;
+    delete rest.breakpoints;
 
     if (!getMethodFromLayout(layout, query.method)(breakpoint)) {
       return null;
