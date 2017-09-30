@@ -17,7 +17,8 @@ npm install react-break --save
 
 ## Compatibility
 
-Compatible with React versions `^15.3.0` and `^16.0.0`.
+Compatible with React versions `^15.3.0` and `^16.0.0`. For earlier versions of React,
+use version `1.2.2`.
 
 ## Usage examples
 
