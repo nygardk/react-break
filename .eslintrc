@@ -1,13 +1,10 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": "airbnb",
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "parser": "babel-eslint",
-  "ecmaFeatures": {
-    "modules": true,
-    "jsx": true
-  },
   "plugins": [
     "react"
   ],
@@ -23,6 +20,7 @@
     "react/require-default-props": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
-    "import/extensions": 0
+    "import/extensions": 0,
+    "jsx-a11y/href-no-hash": 0
   }
 }

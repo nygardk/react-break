@@ -1,43 +1,45 @@
-var webpack = require('webpack');
-var path = require('path');
-
-var ENV = process.env.NODE_ENV;
+const path = require('path');
 
 module.exports = {
+  devtool: process.env !== 'PRODUCTION' ? '#cheap-module-source-map' : false,
   entry: {
-    demo0: ['./demos/demo0/index.jsx'],
-    demo1: ['./demos/demo1/index.jsx']
+    demo0: [
+      'babel-polyfill',
+      './demos/demo0/index.jsx',
+    ],
+    demo1: [
+      'babel-polyfill',
+      './demos/demo1/index.jsx',
+    ],
   },
-  contentBase: './demos',
+  resolve: {
+    modules: [
+      path.resolve('./src'),
+      'node_modules',
+    ],
+    extensions: ['.js', '.jsx'],
+    alias: {
+      'redux-autoloader': './src/react-break',
+    },
+  },
   output: {
     filename: '[name]/bundle.js',
     publicPath: '/',
-    path: path.resolve(__dirname, 'demos')
+    path: path.resolve(__dirname, 'demos'),
   },
   module: {
-    preLoaders: [
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.jsx?$/,
-        loader: 'eslint',
-        exclude: /node_modules|lib/
+        loader: 'babel-loader',
+        exclude: /node_modules/,
       },
     ],
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ENV === 'development'
-          ? ['react-hot', 'babel']
-          : ['babel'],
-        exclude: /node_modules|lib/
-      }
-    ]
   },
-  resolve: {
-    root: [path.resolve('./src')],
-    extensions: ['', '.js', '.jsx']
-  },
-  plugins: ENV === 'development'
-    ? [new webpack.HotModuleReplacementPlugin()]
-    : [],
-  eslint: {configFile: '.eslintrc'}
 };
