@@ -50,6 +50,7 @@ class Break extends PureComponent {
 
   render() {
     const {
+      breakpoints,
       children,
       query,
       style,
