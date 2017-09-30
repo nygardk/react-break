@@ -7,6 +7,8 @@
 
 A utility React component based on [BreakJS](https://github.com/nygardk/BreakJS/). Create declarative breakpoint components for your React apps. Render different components for different layouts.
 
+[Demo](http://nygardk.github.io/react-break/)
+
 ## Install
 
 ```shell
