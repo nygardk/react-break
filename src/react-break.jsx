@@ -31,22 +31,28 @@ class Break extends PureComponent {
   state = { layout: breakjs(this.props.breakpoints) }
 
   componentDidMount() {
+    this.mounted = true;
     this.onBreakpointsChange();
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     this.state.layout.removeChangeListener(this.onLayoutChange);
   }
 
   onBreakpointsChange() {
-    this.setState({ layout: breakjs(this.props.breakpoints) });
-    this.state.layout.removeChangeListener(this.onLayoutChange);
-    this.state.layout.addChangeListener(this.onLayoutChange);
+    if (this.mounted) {
+      this.setState({ layout: breakjs(this.props.breakpoints) });
+      this.state.layout.removeChangeListener(this.onLayoutChange);
+      this.state.layout.addChangeListener(this.onLayoutChange);
+    }
   }
 
   onLayoutChange = () => {
     this.forceUpdate();
   }
+
+  mounted = false
 
   render() {
     const {
