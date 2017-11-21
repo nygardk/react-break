@@ -49,7 +49,9 @@ class Break extends PureComponent {
   }
 
   onLayoutChange = () => {
-    this.forceUpdate();
+    if (this.mounted) {
+      this.forceUpdate();
+    }
   }
 
   mounted = false
